@@ -6,6 +6,7 @@ AccountMap := Map(
 )
 
 BillingArray := ["Billing", "Misc"]
+
 TestGui := Gui("+AlwaysOnTop")
 UserInput := TestGui.Add("DropDownList", "w200 vUserInput", BillingArray)
 TestGui.Add("Button","yp","ok").OnEvent("Click", ProcessMapInput)
