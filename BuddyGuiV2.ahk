@@ -2,7 +2,20 @@
 ;Git Test
 ; --------------- Arrays ----------------
 AccountReasons := ["Billing", "Financial Hardship", "Misc", "Redirection"]
-AccountTemplates := [[ "Day 1","2",],[ "3", "4", "5"], [ "6", "7", "8"], [ "9", "1", "2"]]
+AccountTemplates := [[ "Payment Plan","Day 2",],[ "3", "4", "5"], [ "6", "7", "8"], [ "9", "1", "2"]]
+AccountMap := Map(
+    "Payment Plan", "Day 1 SMS: Test SMS{!}`n`nDay 1 Email: Test Email`n`nDay 2 SMS: Test SMS 2`n`nDay 2 Email: Test Email 2",
+    "Financial Hardship", "2",
+    "Misc", "3",
+    "Redirection", "4"
+)
+
+; FHMap := Map(
+;     "Day 1", "Test 1",
+;     "Financial Hardship", "2",
+;     "Misc", "3",
+;     "Redirection", "4"
+; )
 
 FaultReasons := ["General", "Slow Speeds", "Dropouts", "No Connection", "Service Setup"]
 FaultTemplates := [[ "Day 1","2",],[ "3", "4", "5"], [ "6", "7", "8"], [ "9", "1", "2"], [ "3", "4", "5"]]
@@ -14,7 +27,7 @@ ComplaintReasons := ["NBN", "Raising", "Clarification", "Resolutions", "State Ch
 ComplaintTemplates := [[ "1","2",],[ "3", "4", "5"], [ "6", "7", "8"], [ "9", "1", "2"], [ "3", "4", "5"], [ "a", "b", "c"]]
 
 ; --------------- Templates ----------------
-BuddyGui := Gui("+Border +AlwaysOnTop","Buddy Contact Board")
+BuddyGui := Gui("+Border","Buddy Contact Board")
 BuddyGui.BackColor := "c0082af"
 BuddyGui.SetFont("s12","Nunito")
 ; BuddyGui.Add("Picture", "w200 h-1","BuddyLogo.png")
@@ -23,28 +36,28 @@ ToolsTab := BuddyGui.Add("Tab3", " w450 BackgroundWhite", ["Notepad", "QOL", "Au
 
 TemplateTab.UseTab(1)
 SelAccountReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF Choose1", AccountReasons)
-SelAccountReason.OnEvent("Change", SelAccountReasonSelected)
+SelAccountReason.OnEvent('Change', SelAccountReasonSelected)
 SelAccountTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedAccount", AccountTemplates
 [SelAccountReason.Value])
-GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
+GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunAccount)
 
 TemplateTab.UseTab(2)
 SelFaultReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF Choose1", FaultReasons)
 SelFaultReason.OnEvent('Change', SelFaultReasonSelected)
 SelFaultTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedFault", FaultTemplates[SelFaultReason.Value])
-GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
+; GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
 
 TemplateTab.UseTab(3)
 SelDeliveryReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF Choose1", DeliveryReasons)
 SelDeliveryReason.OnEvent('Change', SelDeliveryReasonSelected)
 SelDeliveryTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedDelivery", DeliveryTemplates[SelDeliveryReason.Value])
-GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
+; GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
 
 TemplateTab.UseTab(4)
 SelComplaintReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF Choose1", ComplaintReasons)
 SelComplaintReason.OnEvent('Change', SelComplaintReasonSelected)
 SelComplaintTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedComplaints", ComplaintTemplates[SelComplaintReason.Value])
-GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
+; GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
 BuddyGui.Show("h500")
 
 
@@ -76,12 +89,19 @@ BuddyGui.Show("h500")
         SelComplaintTemplate.Choose(1)
     }
 
-    RunFault(*)
+    ; RunFault(*)
+    ; {
+    ;     FaultSaved := BuddyGui.Submit(False)
+    ;     Notes.Focus()
+    ;     Send "We have been trying to reach you"
+    ; }
+
+    RunAccount(*)
     {
-        if (SelFaultTemplate == "Day 1")
-        FaultSaved := BuddyGui.Submit(False)
-        Notes.Focus()
-        Send "We have been trying to reach you"
+        Saved:= BuddyGui.Submit(False)
+            Output := AccountMap.Get(Saved.PickedAccount)
+            Notes.Focus()
+            Send Output
     }
 
 ; --------------- Tools ----------------
