@@ -1,10 +1,5 @@
 #Requires AutoHotkey v2.0
-
-!F1::
-{
-    Reload
-}
-
+;Git Test
 ; --------------- Arrays ----------------
 AccountReasons := ["Billing", "Financial Hardship", "Misc", "Redirection"]
 AccountTemplates := [[ "Day 1","2",],[ "3", "4", "5"], [ "6", "7", "8"], [ "9", "1", "2"]]
