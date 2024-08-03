@@ -1,5 +1,10 @@
 #Requires AutoHotkey v2.0
 
+!F1::
+{
+    Reload
+}
+
 ; --------------- Arrays ----------------
 AccountReasons := ["Billing", "Financial Hardship", "Misc", "Redirection"]
 AccountTemplates := [[ "Day 1","2",],[ "3", "4", "5"], [ "6", "7", "8"], [ "9", "1", "2"]]
@@ -17,31 +22,36 @@ ComplaintTemplates := [[ "1","2",],[ "3", "4", "5"], [ "6", "7", "8"], [ "9", "1
 BuddyGui := Gui("+Border","Buddy Contact Board")
 BuddyGui.BackColor := "c0082af"
 BuddyGui.SetFont("s12","Nunito")
-BuddyGui.Add("Picture", "w200 h-1","BuddyLogo.png")
-TemplateTab := BuddyGui.Add("Tab2","h80 w450 BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
-ToolsTab := BuddyGui.Add("Tab3", "h300 w450 BackgroundWhite", ["QOL", "Automations"])
+; BuddyGui.Add("Picture", "w200 h-1","BuddyLogo.png")
+TemplateTab := BuddyGui.Add("Tab2","h100 w450  BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
+ToolsTab := BuddyGui.Add("Tab3", " w450 BackgroundWhite", ["Notepad", "QOL", "Automations"])
 
 TemplateTab.UseTab(1)
-SelAccountReason := BuddyGui.AddDropDownList("w150 h100 r20 BackgroundFFFFFF Choose1", AccountReasons)
+SelAccountReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF Choose1", AccountReasons)
 SelAccountReason.OnEvent('Change', SelAccountReasonSelected)
-SelAccountTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedAccount", AccountTemplates[SelAccountReason.Value])
+SelAccountTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedAccount", AccountTemplates
+[SelAccountReason.Value])
+GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
 
 TemplateTab.UseTab(2)
-SelFaultReason := BuddyGui.AddDropDownList("w150 h100 r20 BackgroundFFFFFF Choose1", FaultReasons)
+SelFaultReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF Choose1", FaultReasons)
 SelFaultReason.OnEvent('Change', SelFaultReasonSelected)
 SelFaultTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedFault", FaultTemplates[SelFaultReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
 
 TemplateTab.UseTab(3)
-SelDeliveryReason := BuddyGui.AddDropDownList("w150 h100 r20 BackgroundFFFFFF Choose1", DeliveryReasons)
+SelDeliveryReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF Choose1", DeliveryReasons)
 SelDeliveryReason.OnEvent('Change', SelDeliveryReasonSelected)
-SelDeliveryTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF Choose1", DeliveryTemplates[SelDeliveryReason.Value])
+SelDeliveryTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedDelivery", DeliveryTemplates[SelDeliveryReason.Value])
+GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
 
 TemplateTab.UseTab(4)
-SelComplaintReason := BuddyGui.AddDropDownList("w150 h100 r20 BackgroundFFFFFF Choose1", ComplaintReasons)
+SelComplaintReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF Choose1", ComplaintReasons)
 SelComplaintReason.OnEvent('Change', SelComplaintReasonSelected)
-SelComplaintTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF Choose1", ComplaintTemplates[SelComplaintReason.Value])
-BuddyGui.Show()
+SelComplaintTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedComplaints", ComplaintTemplates[SelComplaintReason.Value])
+GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
+BuddyGui.Show("h500")
+
 
     SelAccountReasonSelected(*) 
     {
@@ -74,14 +84,15 @@ BuddyGui.Show()
     RunFault(*)
     {
         FaultSaved := BuddyGui.Submit(False)
-        if (FaultSaved.PickedFault == "Day 1")
-            PickedFaultGui := gui("+Border","Buddy Contact Board")
-            PickedFaultGui.Add("Edit","w300 h300","SMS: We have been trying to reach you`n`n`nEmail: Test Email`n`n`nNotes: Test Notes")
-            PickedFaultGui.Show()
+        Notes.Focus()
+        Send "We have been trying to reach you"
     }
 
 ; --------------- Tools ----------------
 ToolsTab.UseTab(1)
+Notes := BuddyGui.Add("Edit", "h300 w415", "")
+
+ToolsTab.UseTab(2)
 BuddyGui.Add("Edit", "vSearchTerm w100")
 BuddyGui.Add("Button", "yp", "Google").OnEvent("Click", ProcessGoogle)
 
