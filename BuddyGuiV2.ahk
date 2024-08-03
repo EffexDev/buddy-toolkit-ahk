@@ -6,10 +6,8 @@
     Reload
 }
 ; --------------- Accounts ----------------
-Days := ["Day 1", "Day 2", "Day 3"]
-
-AccountReasons := ["Billing", "Misc"]
-AccountTemplates := [["Payment Plan","Financial Hardship"],["Misc", "Redirection"]]
+AccountReasons := ["Payment Plan", "Financial Hardship"]
+AccountTemplates := [["Day 1","Day 2", "Day 3"],["Day 1", "Day 2", "Day 3"]]
 PPMap := Map(
     "Day 1", "PP 1",
     "Day 2", "PP 2",
@@ -22,16 +20,9 @@ FHMap := Map(
     "Day 3", "FH 3",
 )
 
-MiscMap := Map(
-    "Day 1", "Misc 1",
-    "Day 2", "Misc 2",
-    "Day 3", "FH 3",
-)
-
 ;------------------- Faults -----------------------
 FaultReasons := ["Contacts","Slow Speeds", "Dropouts", "No Connection", "Service Setup"]
 FaultTemplates := [["Day 1", "Day 2", "Day 3"],["Questions", "Wifi"],["Questions"],["Questions"],["TP-Link"]]
-
 FaultContactsMap := Map(
     "Day 1", "1",
     "Day 2", "2",
@@ -58,10 +49,60 @@ SetupMap := Map(
 )
 
 DeliveryReasons := ["Activations", "Validation", "Banlisting", "Missing Payment Info", "Duplicate"]
-DeliveryTemplates := [[ "1","2",]]
+DeliveryTemplates := [["Day 1","Day 2", "Day 3"],["Day 1","Day 2", "Day 3"],["Day 1","Day 2", "Day 3"],["Day 1","Day 2", "Day 3"],["Day 1","Day 2", "Day 3"]]
+ActivationsMap := Map(
+    "Day 1", "1",
+    "Day 2", "2",
+    "Day 3", "3",
+    )
+
+ValidationMap := Map(
+    "Day 1", "SpeedQ",
+    "Day 2", "FH 2",
+    "Day 3", "FH 2",
+)
+
+BanlistingMap := Map(
+    "Day 1", "DropQ",
+    "Day 2", "FH 2",
+    "Day 3", "FH 3",
+)
+
+PaymentMap := Map(
+    "Day 1", "Misc 1",
+    "Day 2", "FH 2",
+    "Day 3", "FH 2",
+)
+
+DupeMap := Map(
+    "TP-Link", "Misc 1",
+)
 
 ComplaintReasons := ["NBN", "Raising", "Clarification", "Resolutions", "State Changes", "TIO"]
-ComplaintTemplates := [[ "1","2",]]
+ComplaintTemplates := [["Test"],["Test"],["Test"],["Test"],["Test"],["Test"]]
+NBNMap := Map(
+    "Test", "1",
+    )
+
+RaisingMap := Map(
+    "Test", "1",
+    )
+
+ClarificationMap := Map(
+    "Test", "1",
+    )
+
+ResolutionsMap := Map(
+    "Test", "1",
+    )
+
+ChangesMap := Map(
+    "Test", "1",
+    )
+
+TIOMap := Map(
+    "Test", "1",
+    )
 
 ;----------------Global Maps--------------
 RedirectionMap := Map(
