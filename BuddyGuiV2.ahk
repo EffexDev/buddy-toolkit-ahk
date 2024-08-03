@@ -14,7 +14,7 @@ ComplaintReasons := ["NBN", "Raising", "Clarification", "Resolutions", "State Ch
 ComplaintTemplates := [[ "1","2",],[ "3", "4", "5"], [ "6", "7", "8"], [ "9", "1", "2"], [ "3", "4", "5"], [ "a", "b", "c"]]
 
 ; --------------- Templates ----------------
-BuddyGui := Gui("+Border","Buddy Contact Board")
+BuddyGui := Gui("+Border +AlwaysOnTop","Buddy Contact Board")
 BuddyGui.BackColor := "c0082af"
 BuddyGui.SetFont("s12","Nunito")
 ; BuddyGui.Add("Picture", "w200 h-1","BuddyLogo.png")
@@ -23,7 +23,7 @@ ToolsTab := BuddyGui.Add("Tab3", " w450 BackgroundWhite", ["Notepad", "QOL", "Au
 
 TemplateTab.UseTab(1)
 SelAccountReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF Choose1", AccountReasons)
-SelAccountReason.OnEvent('Change', SelAccountReasonSelected)
+SelAccountReason.OnEvent("Change", SelAccountReasonSelected)
 SelAccountTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedAccount", AccountTemplates
 [SelAccountReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
@@ -78,6 +78,7 @@ BuddyGui.Show("h500")
 
     RunFault(*)
     {
+        if (SelFaultTemplate == "Day 1")
         FaultSaved := BuddyGui.Submit(False)
         Notes.Focus()
         Send "We have been trying to reach you"
