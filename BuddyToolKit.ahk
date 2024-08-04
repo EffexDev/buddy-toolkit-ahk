@@ -1,5 +1,5 @@
 #Requires AutoHotkey v2.0
-#Include BuddyGuiV2.ahk
+#Include Templates.ahk
 
 !1::
 {
@@ -7,11 +7,12 @@
 }
 
 ; --------------- GUI ----------------
-BuddyGui := Gui("+Border +Resize","Buddy Contact Board")
-BuddyGui.BackColor := "c0082af"
+BuddyGui := Gui("-Caption","Buddy Tool Kit")
+BuddyGui.BackColor := "c007ba8"
 BuddyGui.SetFont("s12","Nunito")
-; BuddyGui.Add("Picture", "w200 h-1","BuddyLogo.png")
-TemplateTab := BuddyGui.Add("Tab2","h100 w700 BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
+BuddyGui.Add("Picture", "ym+10 w250 h-1","BuddyTelco.png")
+BuddyGui.Add("Picture", "ym xm+550 w-1 h120","BuddyPC.png")
+TemplateTab := BuddyGui.Add("Tab2","xm h100 w700 BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
 ToolsTab := BuddyGui.Add("Tab3", "WP BackgroundWhite", ["Notepad", "QOL", "Automations"])
 
 TemplateTab.UseTab(1)
@@ -38,16 +39,21 @@ SelComplaintReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF v
 SelComplaintReason.OnEvent('Change', SelComplaintReasonSelected)
 SelComplaintTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedComplaint", ComplaintTemplates[SelComplaintReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunComplaint)
-BuddyGui.Show("")
+BuddyGui.Show("x1920 y0 w730 h620")
 
 ToolsTab.UseTab(1)
-Notes := BuddyGui.Add("Edit", "h400 w730", "")
+Notes := BuddyGui.Add("Edit", "h300 w660", "")
 
 ToolsTab.UseTab(2)
 BuddyGui.Add("Edit", "vSearchTerm w300")
 BuddyGui.Add("Button", "yp", "Google").OnEvent("Click", ProcessGoogle)
-
 BuddyGui.Add("Button","yp", "Superlookup").OnEvent("Click", ProcessSuperlookup)
+BuddyGui.Add("Button","yp", "Lock Terminal").OnEvent("Click", LockTerminal)
+
+ToolsTab.UseTab(3)
+BuddyGui.Add("Button",, "Ping Test").OnEvent("Click", PingTest)
+BuddyGui.Add("Button","yp", "Traceroute").OnEvent("Click", Traceroute)
+BuddyGui.Add("Button","yp", "NSLookup").OnEvent("Click", NSLookup)
 
 ;---------------- Functions -------------------
 
@@ -249,11 +255,82 @@ RunComplaint(*)
     }
 }
 
+;------------------------ Make it Draggable --------------------------
+
+LShift & LButton::
+EWD_MoveWindow(*)
+{
+    CoordMode "Mouse"  ; Switch to screen/absolute coordinates.
+    MouseGetPos &EWD_MouseStartX, &EWD_MouseStartY, &EWD_MouseWin
+    WinGetPos &EWD_OriginalPosX, &EWD_OriginalPosY,,, EWD_MouseWin
+    if !WinGetMinMax(EWD_MouseWin)  ; Only if the window isn't maximized 
+        SetTimer EWD_WatchMouse, 10 ; Track the mouse as the user drags it.
+
+    EWD_WatchMouse()
+    {
+        if !GetKeyState("LButton", "P")  ; Button has been released, so drag is complete.
+        {
+            SetTimer , 0
+            return
+        }
+        if GetKeyState("Escape", "P")  ; Escape has been pressed, so drag is cancelled.
+        {
+            SetTimer , 0
+            WinMove EWD_OriginalPosX, EWD_OriginalPosY,,, EWD_MouseWin
+            return
+        }
+        ; Otherwise, reposition the window to match the change in mouse coordinates
+        ; caused by the user having dragged the mouse:
+        CoordMode "Mouse"
+        MouseGetPos &EWD_MouseX, &EWD_MouseY
+        WinGetPos &EWD_WinX, &EWD_WinY,,, EWD_MouseWin
+        SetWinDelay -1   ; Makes the below move faster/smoother.
+        WinMove EWD_WinX + EWD_MouseX - EWD_MouseStartX, EWD_WinY + EWD_MouseY - EWD_MouseStartY,,, EWD_MouseWin
+        EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subroutine.
+        EWD_MouseStartY := EWD_MouseY
+    }
+}
+
 ;------------------------- Tools -------------------------------------
     ProcessGoogle(*)
 {
     Saved := BuddyGui.Submit(False)
     Run ("https://www.google.com/search?q=" Saved.SearchTerm)
+}
+
+PingTest(*)
+{
+    if WinExist("C:\Windows\SYSTEM32\cmd.exe")
+    WinActivate
+else
+    Run "cmd.exe"
+    Sleep 200
+    Send "ping " A_Clipboard "{Enter}"
+}
+
+Traceroute(*)
+{
+    if WinExist("C:\Windows\SYSTEM32\cmd.exe")
+        WinActivate
+    else
+        Run "cmd.exe"
+        Sleep 200
+        Send "tracert " A_Clipboard "{Enter}"
+}
+
+NSLookup(*)
+{
+    if WinExist("C:\Windows\SYSTEM32\cmd.exe")
+        WinActivate
+    else
+        Run "cmd.exe"
+        Sleep 200
+        Send "nslookup " A_Clipboard "{Enter}"
+}
+
+LockTerminal(*)
+{
+    Run "rundll32 user32.dll`,LockWorkStation"
 }
 
 ProcessSuperlookup(*)
@@ -279,4 +356,39 @@ ProcessSuperlookup(*)
     ;Sites
     else if (RegExMatch(A_Clipboard, "^http(s)?:\/\/|www\.", &Match))
         Run A_Clipboard
+}
+
+csFullName := A_UserName
+csFirstName := ""
+Match:=""
+Dice:= 0
+sign := ["Regards,{Tab}{Tab}", "Cheers,{Tab}{Tab}", "Have a great day{!}{Tab}{Tab}", "All the best{Tab}{Tab}"]
+Match:=""
+
+if (RegExMatch(csFullName, "^[^.]*",&csFirstName)) {
+csTitle:=StrTitle(csFirstName[0])
+}
+
+:*:@@::  ; Double @ for sending email address to input field
+{    
+    SendInput csFullName
+    SendInput "@team.aussiebroadband.com.au"
+}
+
+^+s::{
+    Dice:= Random(1,4)
+    Selected := sign.Get(Dice)
+    Send (Selected)
+    Send (csTitle)
+    SendInput "{Tab 1}{Space}"
+	SendInput "{Tab 3}"
+    Dice:= Random(1,4)   
+}
+
+^+o:: ;
+{
+    SendInput "{shift down}{tab}{tab}{tab}{tab}{tab}{tab}{shift up}s"
+    Sleep 1000
+    SendInput "{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}c"
+    SendInput "{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}"
 }
