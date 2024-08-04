@@ -1,10 +1,6 @@
 #Requires AutoHotkey v2.0
 #Include Functions.ahk
 
-!1::
-{
-    Reload
-}
 ; --------------- Accounts ----------------
 AccountReasons := ["Payment Plan", "Financial Hardship"]
 AccountTemplates := [["Day 1","Day 2", "Day 3"],["Day 1", "Day 2", "Day 3"]]

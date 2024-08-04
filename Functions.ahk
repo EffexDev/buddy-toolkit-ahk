@@ -1,13 +1,18 @@
 #Requires AutoHotkey v2.0
 #Include BuddyGuiV2.ahk
 
+!1::
+{
+    Reload
+}
+
 ; --------------- GUI ----------------
-BuddyGui := Gui("+Border -Caption","Buddy Contact Board")
+BuddyGui := Gui("+Border +Resize","Buddy Contact Board")
 BuddyGui.BackColor := "c0082af"
 BuddyGui.SetFont("s12","Nunito")
 ; BuddyGui.Add("Picture", "w200 h-1","BuddyLogo.png")
-TemplateTab := BuddyGui.Add("Tab2","h100 w770  BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
-ToolsTab := BuddyGui.Add("Tab3", "h660 w770 BackgroundWhite", ["Notepad", "QOL", "Automations"])
+TemplateTab := BuddyGui.Add("Tab2","h100 w700 BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
+ToolsTab := BuddyGui.Add("Tab3", "WP BackgroundWhite", ["Notepad", "QOL", "Automations"])
 
 TemplateTab.UseTab(1)
 SelAccountReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF vPickedAccountReason Choose1", AccountReasons)
@@ -33,10 +38,10 @@ SelComplaintReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF v
 SelComplaintReason.OnEvent('Change', SelComplaintReasonSelected)
 SelComplaintTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedComplaint", ComplaintTemplates[SelComplaintReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunComplaint)
-BuddyGui.Show("x1920 y0 w800 h1080")
+BuddyGui.Show("")
 
 ToolsTab.UseTab(1)
-Notes := BuddyGui.Add("Edit", "h600 w730", "")
+Notes := BuddyGui.Add("Edit", "h400 w730", "")
 
 ToolsTab.UseTab(2)
 BuddyGui.Add("Edit", "vSearchTerm w300")
