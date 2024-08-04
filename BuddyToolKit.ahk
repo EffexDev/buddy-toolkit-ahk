@@ -7,13 +7,13 @@
 }
 
 ; --------------- GUI ----------------
-BuddyGui := Gui("-Caption","Buddy Tool Kit")
+BuddyGui := Gui(,"Buddy Tool Kit")
 BuddyGui.BackColor := "c007ba8"
 BuddyGui.SetFont("s12","Nunito")
 BuddyGui.Add("Picture", "ym+10 w250 h-1","BuddyTelco.png")
 BuddyGui.Add("Picture", "ym xm+550 w-1 h120","BuddyPC.png")
 TemplateTab := BuddyGui.Add("Tab2","xm h100 w700 BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
-ToolsTab := BuddyGui.Add("Tab3", "WP BackgroundWhite", ["Notepad", "QOL", "Automations"])
+ToolsTab := BuddyGui.Add("Tab3", "WP h350 BackgroundWhite", ["Notepad", "QOL", "Automations", "About"])
 
 TemplateTab.UseTab(1)
 SelAccountReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF vPickedAccountReason Choose1", AccountReasons)
@@ -39,10 +39,10 @@ SelComplaintReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF v
 SelComplaintReason.OnEvent('Change', SelComplaintReasonSelected)
 SelComplaintTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedComplaint", ComplaintTemplates[SelComplaintReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunComplaint)
-BuddyGui.Show("x1920 y0 w730 h620")
+BuddyGui.Show("w730 h620")
 
 ToolsTab.UseTab(1)
-Notes := BuddyGui.Add("Edit", "h300 w660", "")
+Notes := BuddyGui.Add("Edit", "h300 w700", "")
 
 ToolsTab.UseTab(2)
 BuddyGui.Add("Edit", "vSearchTerm w300")
@@ -54,6 +54,9 @@ ToolsTab.UseTab(3)
 BuddyGui.Add("Button",, "Ping Test").OnEvent("Click", PingTest)
 BuddyGui.Add("Button","yp", "Traceroute").OnEvent("Click", Traceroute)
 BuddyGui.Add("Button","yp", "NSLookup").OnEvent("Click", NSLookup)
+
+ToolsTab.UseTab(4)
+BuddyGui.Add("Text", "+Wrap c000000", "Author: Jordan Cartledge`n`nCo-Authors:`nBailey Wilson`nSam Milburn`nTristan Hammat`nYazid Martin`n`nThis tool is designed to be the one stop shop for templates and tools for Buddy Telco. We`nstarted by adapting the Task Panel we used to use at Aussie and adapted and refined it.`n`nThe code was still in V1.1 however and was glued together with hopes and dreams so I wrote it`nin AHK V2.`n`nSo long, and thanks for all the fish.")
 
 ;---------------- Functions -------------------
 
@@ -304,8 +307,9 @@ PingTest(*)
     WinActivate
 else
     Run "cmd.exe"
-    Sleep 200
+    Sleep 300
     Send "ping " A_Clipboard "{Enter}"
+    return
 }
 
 Traceroute(*)
@@ -314,8 +318,9 @@ Traceroute(*)
         WinActivate
     else
         Run "cmd.exe"
-        Sleep 200
+        Sleep 300
         Send "tracert " A_Clipboard "{Enter}"
+        return
 }
 
 NSLookup(*)
@@ -324,8 +329,9 @@ NSLookup(*)
         WinActivate
     else
         Run "cmd.exe"
-        Sleep 200
+        Sleep 300
         Send "nslookup " A_Clipboard "{Enter}"
+        return
 }
 
 LockTerminal(*)
@@ -391,4 +397,4 @@ csTitle:=StrTitle(csFirstName[0])
     Sleep 1000
     SendInput "{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}c"
     SendInput "{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}"
-}
+}        
