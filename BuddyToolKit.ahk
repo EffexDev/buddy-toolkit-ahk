@@ -17,28 +17,28 @@ TemplateTab := BuddyGui.Add("Tab2","xm h100 w700 BackgroundWhite", ["Accounts", 
 ToolsTab := BuddyGui.Add("Tab3", "WP h760 BackgroundWhite", ["Notepad", "QOL", "Automations", "About"])
 
 TemplateTab.UseTab(1)
-SelAccountReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF vPickedAccountReason Choose1", AccountReasons)
+SelAccountReason := BuddyGui.AddDropDownList("w200 h100 r20 BackgroundFFFFFF vPickedAccountReason Choose1", AccountReasons)
 SelAccountReason.OnEvent('Change', SelAccountReasonSelected)
-SelAccountTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedAccount", AccountTemplates
+SelAccountTemplate := BuddyGui.AddDropDownList("yp w200 r20 BackgroundFFFFFF vPickedAccount", AccountTemplates
 [SelAccountReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunAccount)
 
 TemplateTab.UseTab(2)
-SelFaultReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF vPickedFaultReason Choose1", FaultReasons)
+SelFaultReason := BuddyGui.AddDropDownList("w200 h100 r20 BackgroundFFFFFF vPickedFaultReason Choose1", FaultReasons)
 SelFaultReason.OnEvent('Change', SelFaultReasonSelected)
-SelFaultTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedFault", FaultTemplates[SelFaultReason.Value])
+SelFaultTemplate := BuddyGui.AddDropDownList("yp w200 r20 BackgroundFFFFFF vPickedFault", FaultTemplates[SelFaultReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunFault)
 
 TemplateTab.UseTab(3)
-SelDeliveryReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF vPickedDeliveryReason Choose1", DeliveryReasons)
+SelDeliveryReason := BuddyGui.AddDropDownList("w200 h100 r20 BackgroundFFFFFF vPickedDeliveryReason Choose1", DeliveryReasons)
 SelDeliveryReason.OnEvent('Change', SelDeliveryReasonSelected)
-SelDeliveryTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedDelivery", DeliveryTemplates[SelDeliveryReason.Value])
+SelDeliveryTemplate := BuddyGui.AddDropDownList("yp w200 r20 BackgroundFFFFFF vPickedDelivery", DeliveryTemplates[SelDeliveryReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunDelivery)
 
 TemplateTab.UseTab(4)
-SelComplaintReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF vPickedComplaintReason Choose1", ComplaintReasons)
+SelComplaintReason := BuddyGui.AddDropDownList("w200 h100 r20 BackgroundFFFFFF vPickedComplaintReason Choose1", ComplaintReasons)
 SelComplaintReason.OnEvent('Change', SelComplaintReasonSelected)
-SelComplaintTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedComplaint", ComplaintTemplates[SelComplaintReason.Value])
+SelComplaintTemplate := BuddyGui.AddDropDownList("yp w200 r20 BackgroundFFFFFF vPickedComplaint", ComplaintTemplates[SelComplaintReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunComplaint)
 BuddyGui.Show("x1920 y0 w730 h1080")
 
@@ -203,13 +203,6 @@ RunDelivery(*)
     Else if (Saved.PickedDeliveryReason = "Missing Payment Info")
         {
             Output := PaymentMap.Get(Saved.PickedDelivery)
-            ControlFocus Notes
-            Notes.Focus()
-            Send Output
-        }
-    Else if (Saved.PickedDeliveryReason = "Duplicate")
-        {
-            Output := DupeMap.Get(Saved.PickedDelivery)
             ControlFocus Notes
             Notes.Focus()
             Send Output
