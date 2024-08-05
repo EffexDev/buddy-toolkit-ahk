@@ -5,7 +5,7 @@
 AccountReasons := ["Payment Plan", "Financial Hardship"]
 AccountTemplates := [["Day 1","Day 2", "Day 3"],["Day 1", "Day 2", "Day 3"]]
 PPMap := Map(
-    "Day 1", "PP 1",
+    "Set Up", "Hey [Customer],`n`nIf you would like to set up a payment plan, you can do so in the billing section of the Buddy Telco App.`n`nNavigate to the Billing tab at the bottom of the app.`nTap the Request a Payment Extension button.`nEnter your preferred payment date.`n`nYou will receive email confirmation once the plan has been set.",
     "Day 2", "PP 2",
     "Day 3", "PP 3",
 )
