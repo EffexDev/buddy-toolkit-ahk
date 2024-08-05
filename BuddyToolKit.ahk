@@ -7,13 +7,13 @@
 }
 
 ; --------------- GUI ----------------
-BuddyGui := Gui(,"Buddy Tool Kit")
+BuddyGui := Gui("-Caption","Buddy Tool Kit")
 BuddyGui.BackColor := "c007ba8"
 BuddyGui.SetFont("s12","Nunito")
 BuddyGui.Add("Picture", "ym+10 w250 h-1","BuddyTelco.png")
 BuddyGui.Add("Picture", "ym xm+550 w-1 h120","BuddyPC.png")
 TemplateTab := BuddyGui.Add("Tab2","xm h100 w700 BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
-ToolsTab := BuddyGui.Add("Tab3", "WP h540 BackgroundWhite", ["Notepad", "QOL", "Automations", "About"])
+ToolsTab := BuddyGui.Add("Tab3", "WP h790 BackgroundWhite", ["Notepad", "QOL", "Automations", "About"])
 
 TemplateTab.UseTab(1)
 SelAccountReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF vPickedAccountReason Choose1", AccountReasons)
@@ -39,10 +39,10 @@ SelComplaintReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF v
 SelComplaintReason.OnEvent('Change', SelComplaintReasonSelected)
 SelComplaintTemplate := BuddyGui.AddDropDownList("yp w160 r20 BackgroundFFFFFF vPickedComplaint", ComplaintTemplates[SelComplaintReason.Value])
 GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunComplaint)
-BuddyGui.Show("w730 h620")
+BuddyGui.Show("x1920 y0 w730 h1080")
 
 ToolsTab.UseTab(1)
-Notes := BuddyGui.Add("Edit", "h480 w670", "")
+Notes := BuddyGui.Add("Edit", "h735 w670", "")
 
 ToolsTab.UseTab(2)
 BuddyGui.Add("Edit", "vSearchTerm w300")
