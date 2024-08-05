@@ -5,13 +5,13 @@
 AccountReasons := ["Payment Plan", "Financial Hardship"]
 AccountTemplates := [["Set Up","Confirmation", "Payment Options", "Update Details"],["Day 1", "Day 2", "Day 3"]]
 PPMap := Map(
-    "Set Up", "Hey [Customer],`n`nIf you would like to set up a payment plan, you can do so in the billing section of the Buddy Telco App.`n`nNavigate to the Billing tab at the bottom of the app.`nTap the Request a Payment Extension button.`nEnter your preferred payment date.`n`nYou will receive email confirmation once the plan has been set.",
+    "Set Up", "Hey xxx,`n`nIf you would like to set up a payment plan, you can do so in the billing section of the Buddy Telco App.`n`nNavigate to the Billing tab at the bottom of the app`nTap the Request a Payment Extension button`nEnter your preferred payment date`n`nYou will receive email confirmation once the plan has been set.`n`nRegards,`nxxx",
 
-    "Confirmation", "Hey [Customer]`n`nWe have set the payment plan that you have requested. You should receive a confirmation email outlining the details shortly.`n`nRegards,`n",
+    "Confirmation", "Hey xxx,`n`nWe have set the payment plan that you have requested. You should receive a confirmation email outlining the details shortly.`n`nRegards,`nxxx",
 
-    "Payment Options", "Hey [Customer]`n`nThe payment methods we currently accept are direct debit and card payments. If you would like to update your payment details you can do this through the billing section of the app.`n`nRegards,`n",
+    "Payment Options", "Hey xxx,`n`nThe payment methods we currently accept are direct debit and card payments. If you would like to update your payment details you can do this through the billing section of the app.`n`nRegards,`nxxx",
 
-    "Update Details", "Hey [Customer]`n`nIf you would like to update your payment details, you can do so through the billing section of the Buddy Telco App.`n`nNavigate to the Billing tab at the bottom of the app.`nTap the edit button next to payment method at the top.`nComplete the 2FA via SMS or Email.`nEnter your new billing information.`nYour payment details are now updated.`n`nRegards,`n"
+    "Update Details", "Hey xxx,`n`nIf you would like to update your payment details, you can do so through the billing section of the Buddy Telco App.`n`nNavigate to the Billing tab at the bottom of the app`nTap the edit button next to payment method at the top`nComplete the 2FA via SMS or Email`nEnter your new billing information`n`nYour payment details are now updated.`n`nRegards,`nxxx",
 )
 
 FHMap := Map(
