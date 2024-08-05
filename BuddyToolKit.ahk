@@ -12,8 +12,9 @@ BuddyGui.BackColor := "c007ba8"
 BuddyGui.SetFont("s12","Nunito")
 BuddyGui.Add("Picture", "ym+10 w250 h-1","BuddyTelco.png")
 BuddyGui.Add("Picture", "ym xm+550 w-1 h120","BuddyPC.png")
+BuddyGui.Add("Text", "xm cFFFFFF", "Toolkit Version 1"), 
 TemplateTab := BuddyGui.Add("Tab2","xm h100 w700 BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
-ToolsTab := BuddyGui.Add("Tab3", "WP h790 BackgroundWhite", ["Notepad", "QOL", "Automations", "About"])
+ToolsTab := BuddyGui.Add("Tab3", "WP h760 BackgroundWhite", ["Notepad", "QOL", "Automations", "About"])
 
 TemplateTab.UseTab(1)
 SelAccountReason := BuddyGui.AddDropDownList("w160 h100 r20 BackgroundFFFFFF vPickedAccountReason Choose1", AccountReasons)
@@ -42,7 +43,7 @@ GenerateFault := BuddyGui.Add("Button", "yp", "Generate").OnEvent("Click", RunCo
 BuddyGui.Show("x1920 y0 w730 h1080")
 
 ToolsTab.UseTab(1)
-Notes := BuddyGui.Add("Edit", "h735 w670", "")
+Notes := BuddyGui.Add("Edit", "h705 w670", "")
 
 ToolsTab.UseTab(2)
 BuddyGui.Add("Edit", "vSearchTerm w300")
@@ -118,9 +119,9 @@ RunFault(*)
     Saved:= BuddyGui.Submit(False)
     Output := ""
     try{
-    if (Saved.PickedFaultReason = "Contacts")
+    if (Saved.PickedFaultReason = "General")
         {
-        Output := FaultContactsMap.Get(Saved.PickedFault)
+        Output := FaultGeneralMap.Get(Saved.PickedFault)
         ControlFocus Notes
         Notes.Focus()
         Send Output
@@ -149,6 +150,20 @@ RunFault(*)
     else if (Saved.PickedFaultReason = "Service Setup")
         {
             Output := SetupMap.Get(Saved.PickedFault)
+            ControlFocus Notes
+            Notes.Focus()
+            Send Output
+        }
+    else if (Saved.PickedFaultReason = "CSP Linking")
+        {
+            Output := LinkMap.Get(Saved.PickedFault)
+            ControlFocus Notes
+            Notes.Focus()
+            Send Output
+        }
+    else if (Saved.PickedFaultReason = "Hardware")
+        {
+            Output := HardwareMap.Get(Saved.PickedFault)
             ControlFocus Notes
             Notes.Focus()
             Send Output
