@@ -1,19 +1,14 @@
 #Requires AutoHotkey v2.0
 #Include Templates.ahk
 
-!1::
-{
-    Reload
-}
-
 ; --------------- GUI ----------------
 BuddyGui := Gui("-Caption","Buddy Tool Kit")
 BuddyGui.BackColor := "c007ba8"
 BuddyGui.SetFont("s12","Nunito")
-BuddyGui.Add("Picture", "ym+10 w250 h-1","BuddyTelco.png")
+BuddyGui.Add("Picture", "ym+10 w250 h-1","BuddyLogo.png")
 BuddyGui.Add("Picture", "ym xm+550 w-1 h120","BuddyPC.png")
 BuddyGui.Add("Text", "xm cFFFFFF", "Toolkit Version 1"), 
-TemplateTab := BuddyGui.Add("Tab2","xm h100 w700 BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
+TemplateTab := BuddyGui.Add("Tab3","xm h100 w700 BackgroundWhite", ["Accounts", "Faults","Delivery","Complaints",])
 ToolsTab := BuddyGui.Add("Tab3", "WP h760 BackgroundWhite", ["Notepad", "QOL", "Automations", "About"])
 
 TemplateTab.UseTab(1)
@@ -57,10 +52,9 @@ BuddyGui.Add("Button","yp", "Traceroute").OnEvent("Click", Traceroute)
 BuddyGui.Add("Button","yp", "NSLookup").OnEvent("Click", NSLookup)
 
 ToolsTab.UseTab(4)
-BuddyGui.Add("Text", "+Wrap c000000", "Author: Jordan Cartledge`n`nCo-Authors:`nBailey Wilson`nSam Milburn`nTristan Hammat`nYazid Martin`n`nThis tool is designed to be the one stop shop for templates and tools for Buddy Telco. We`nstarted by adapting the Task Panel we used to use at Aussie and adapted and refined it.`n`nThe code was still in V1.1 however and was glued together with hopes and dreams so I`nwrote itin AHK V2.`n`nSo long, and thanks for all the fish.")
+BuddyGui.Add("Text", "+Wrap c000000", "Author: Jordan Cartledge`n`nCo-Authors:`nBailey Wilson`nSam Milburn`nTristan Hammat`nYazid Martin`n`nThis tool is designed to be the one stop shop for templates and tools for Buddy Telco. We`nstarted by adapting the Task Panel we used to use at Aussie and adapted and refined it.`n`nThe code was still in V1.1 however and was glued together with hopes and dreams so I wrote it`nin AHK V2.`n`nSo long, and thanks for all the fish.")
 
 ;---------------- Functions -------------------
-
 SelAccountReasonSelected(*) 
 {
     SelAccountTemplate.Delete()
@@ -179,9 +173,16 @@ RunDelivery(*)
     Saved:= BuddyGui.Submit(False)
     Output := ""
     try{
-    if (Saved.PickedDeliveryReason = "Activations")
+    if (Saved.PickedDeliveryReason = "HFC")
         {
-            Output := ActivationsMap.Get(Saved.PickedDelivery)
+            Output := HFCMap.Get(Saved.PickedDelivery)
+            ControlFocus Notes
+            Notes.Focus()
+            Send Output
+        }
+    Else if (Saved.PickedDeliveryReason = "FTTC")
+        {
+            Output := FTTCMap.Get(Saved.PickedDelivery)
             ControlFocus Notes
             Notes.Focus()
             Send Output
