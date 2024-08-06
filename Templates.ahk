@@ -109,36 +109,28 @@ PaymentMap := Map(
 )
 
 ComplaintReasons := ["NBN", "Raising", "Clarification", "Resolutions", "State Changes", "TIO"]
-ComplaintTemplates := [["Test"],["Test"],["Test"],["Test"],["Test"],["Test"]]
+ComplaintTemplates := [["Templates"],["Templates"],["Templates"],["Templates"],["Changing PRD"],["Templates"]]
 NBNMap := Map(
-    "Test", "1",
+    "Templates", "Dear xxx,`n`nComplaints may be made to the NBN and updates on the progress of complaints can be obtained by contacting the NBN Complaints Team on the following: `n`nThe NBN Co website online form at `'Contact Us`'. `nwww.nbnco.com.au/online_channel/contact_us`nby email to complaints@nbnco.com.au`nby phone to 1800 687 626`nby mail Locked Bag 27, Gold Coast MC, 9726`nby fax to Complaint Team 1800 106 033.`n`n------------------------------`n`nDear ,`n`nAs discussed earlier today in relation to your nbn connection. Please be advised we have raised a NBN formal complaint on your behalf. An NBN Case Manager will contact yourself within the next 5 business days, if you haven`'t been contacted within this time please do not hesitate to let us know.`n`nComplaint reference details are as follows:`nNBN Formal Complaint Reference Number: XXXX`nNBN Complaints Team Contact: 1800 687 626`n`nPlease do not hesitate to contact our Customer Service team directly on 1300 028 339 should you have any further questions.",
     )
 
 RaisingMap := Map(
-    "Test", "1",
+    "Raising", "Complaints - Template`n`nIssue: [Describe the issue or problem the customer is facing, providing any relevant background information, incidents, or observations that led to their concerns.]`n`nWhat Has Been Done So Far: [Outline any actions you have taken to address the issue thus far, such as troubleshooting, external escalation, explanation of our policies and procedures, or bringing it to the attention of your supervisor. Have we done everything we can internally to resolve the customer`'s concerns, including following correct escalation pathways, if not, why not?]`n`nCustomer`'s Desired Outcome from the Complaint: [Clearly state what resolution or action that the customer has advised would effectively address the issue.]"
     )
 
 ClarificationMap := Map(
-    "Test", "1",
+    "Templates", "Dear xxx,`n`nThanks for letting us know about this issue.`n`nAs you have not contacted our customer service team on this matter yet, I have interpreted this as a request for technical support and have raised a fault with our customer service team to help you resolve this issue in the Buddy Telco. If you have issues with the way our customer service team handles the fault or with how long they take to progress it, please feel free to reach back out to the complaints team and we will take a look into this for you.`n`nIf you did wish to lodge a formal complaint please respond to this email to advise us and a complaints officer will reach out to you soon.`n`n------------------------------`n`nDear xxx,`n`nThank you for taking the time to get in touch with us regarding this matter. `n`nUnfortunately I have been unable to identify you on any account at Buddy Telco. `nIf you are contacting us regarding an account that you are not authorised on please have the account holder reach out to us through one of the following methods:`n`nPhoning 1300 028 339 - Monday to Friday 9am to 5pm AWST`nEmailing complaints@buddytelco.com.au`nCompleting the online complaint form at the bottom of this page`nPost at PO Box 3351, Gippsland Mail Centre VIC 3841`n`nOnce we are able to validate your complaint against a Buddy Telco  we will be more than happy to investigate your issue."
     )
 
 ResolutionsMap := Map(
-    "Test", "1",
+    "Templates", "Dear xxx,`n`nThank you for the response.`n`nI have applied this credit and marked this complaint as resolved. You should receive an email confirming this credit within 24 hours.`nIf you have any further questions or concerns, please do not hesitate to contact our customer service team via LiveChat.`n`n------------------------------`n`nDear ,`n`nThank you for the response.`n`nI have submitted this refund to our finance team and marked this complaint as resolved. You should receive this refund within 10 business days. Please feel free to reach out to us for updates on this.`n`nIf you have any further questions or concerns, please do not hesitate to contact our customer service team via LiveChat.`n`n------------------------------`n`nDear xxx,`n`nThank you for the response.`n`nI have applied this discount and marked this complaint as resolved. You should see this reflected on future invoices.`nIf you have any further questions or concerns, please do not hesitate to contact our customer service team via LiveChat",
     )
 
 ChangesMap := Map(
-    "Test", "1",
+    "Changing PRD", "Dear xxx,`n`nPlease be advised that I am moving the proposed resolution date of your complaint to XXX. This is occurring due to xxx. `n`nIf at any point you are unsatisfied with our handling of your complaint, its progress or outcome, you may opt to seek external dispute resolution via an external dispute resolution provider such as the Telecommunications Industry Ombudsman.`n`nThe Telecommunications Industry Ombudsman can be contacted by:`nPhone: 1800 062 058`nFax: 1800 630 614`nOnline: http://www.tio.com.au/making-a-complaint",
     )
 
 TIOMap := Map(
-    "Test", "1",
+    "Templates", "Dear xxx,`n`nIf you are unsatisfied with our response to your complaint and you wish to seek external dispute resolution, you may do so via the Telecommunications Industry Ombudsman.`nThe Telecommunications Industry Ombudsman can be contacted by:`n`nPhone: 1800 062 058`nFax: 1800 630 614`nOnline: http://www.tio.com.au/making-a-complaint`n`n------------------------------`n`nDear xxx,`n`nI invite you to respond to this email within 10 working days. If we do not receive a response within 10 working days, the matter will be considered resolved and your complaint will be closed.`n`nIf your Ombudsman case progresses further we will receive notification from the Ombudsman and your complaint will be reopened and addressed accordingly.",
     )
-
-;----------------Global Maps--------------
-RedirectionMap := Map(
-    "Day 1", "RD 1",
-    "Day 2", "RD 2",
-    "Day 3", "RD 3",
-)
-
 
