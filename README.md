@@ -1,4 +1,4 @@
-# BuddyToolBoard
+# Buddy Toolkit
 
 This is an AHK V2 based Gui that stores and generates all the required templates for tasking and responding to emails, as well as a few useful tools for network troubleshooting
 
