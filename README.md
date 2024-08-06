@@ -14,4 +14,4 @@ Alt+F1 to reload the script
 
 Please Enjoy
 
-![Brother yes](https://github.com/user-attachments/assets/ed9e34e1-94eb-4af7-b8a4-8f48fcc15dc0)
+![Brother yes](https://github.com/user-attachments/assets/6bcfbd1e-d8b6-4430-a0de-557464efa04f)
