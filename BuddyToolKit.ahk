@@ -1,6 +1,11 @@
 #Requires AutoHotkey v2.0
 #Include Templates.ahk
 
+!F1::
+{
+    Reload
+}
+
 ; --------------- GUI ----------------
 BuddyGui := Gui("-Caption","Buddy Tool Kit")
 BuddyGui.BackColor := "c007ba8"
