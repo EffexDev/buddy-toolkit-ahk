@@ -24,7 +24,7 @@ FaultTemplates := [["Titles", "Warning", "Closing", "NBN Raise", "Resets", "Rout
 FaultGeneralMap := Map(
     "Titles", "No Connection`n`nService Setup`n`nService Never Worked`n`nSlow Speeds`n`nDropouts`n`n",
 
-    "Warning", "Hey xxx,`n`nJust wanted to reach out to see if you still needed a hand with this fault?`n`nIf we don`'t hear back from you within the next day or so we will close the fault off, but we can re-open it in the future if we need to.`n`nRegards,`nxxx",
+    "Warning", "Hey xxx,`n`nJust wanted to reach out to see if you still needed a hand with this fault?`n`nIf we don`'t hear back from you within the next day or so we will close the fault off, but we can re-open it in the future if we need to.`n`nRegards,`nxxx`n`n------------------------------`n`nHey, Buddy Telco here. Just a quick reminder to jump on the app and check the response to your fault.",
 
     "Closing", "Hey xxx,`n`nSince we didn`'t hear back we will close this fault off but if you need us to investigate in future just let us know.`n`nRegards,`nxxx",
 
