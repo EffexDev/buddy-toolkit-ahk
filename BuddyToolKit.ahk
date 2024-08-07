@@ -382,8 +382,7 @@ csFullName := A_UserName
 csFirstName := ""
 Match:=""
 Dice:= 0
-sign := ["Regards,{Tab}{Tab}", "Cheers,{Tab}{Tab}", "Have a great day{!}{Tab}{Tab}", "All the best{Tab}{Tab}"]
-Match:=""
+sign := ["Regards,", "Cheers,", "Have a great day{!}", "All the best,"]
 
 if (RegExMatch(csFullName, "^[^.]*",&csFirstName)) {
 csTitle:=StrTitle(csFirstName[0])
@@ -411,4 +410,4 @@ csTitle:=StrTitle(csFirstName[0])
     Sleep 1000
     SendInput "{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}c"
     SendInput "{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}{tab}"
-}        
+}
