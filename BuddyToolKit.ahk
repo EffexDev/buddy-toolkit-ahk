@@ -46,10 +46,12 @@ ToolsTab.UseTab(1)
 Notes := BuddyGui.Add("Edit", "h705 w670", "")
 
 ToolsTab.UseTab(2)
-BuddyGui.Add("Edit", "vSearchTerm w300")
-BuddyGui.Add("Button", "yp", "Google").OnEvent("Click", ProcessGoogle)
+BuddyGui.Add("Edit","vSearchTerm w300")
+BuddyGui.Add("Button","yp", "Google").OnEvent("Click", ProcessGoogle)
 BuddyGui.Add("Button","yp", "Superlookup").OnEvent("Click", ProcessSuperlookup)
 BuddyGui.Add("Button","yp", "Lock Terminal").OnEvent("Click", LockTerminal)
+BuddyGui.Add("Button","xm+15 y360","Startup").OnEvent("Click", Startup)
+
 
 ToolsTab.UseTab(3)
 BuddyGui.Add("Button",, "Ping Test").OnEvent("Click", PingTest)
@@ -57,7 +59,7 @@ BuddyGui.Add("Button","yp", "Traceroute").OnEvent("Click", Traceroute)
 BuddyGui.Add("Button","yp", "NSLookup").OnEvent("Click", NSLookup)
 
 ToolsTab.UseTab(4)
-BuddyGui.Add("Text", "+Wrap c000000", "Author: Jordan Cartledge`n`nCo-Authors:`nCallan Johnson`nBailey Wilson`nSam Milburn`nTristan Hammat`nYazid Martin`n`nThis tool is designed to be the one stop shop for templates and tools for Buddy Telco. We`nstarted by adapting the Task Panel we used to use at Aussie and adapted and refined it.`n`nThe code was still in V1.1 however and was glued together with hopes and dreams so I wrote it`nin AHK V2.`n`nSo long, and thanks for all the fish.")
+BuddyGui.Add("Text", "+Wrap c000000", "Author: Jordan Cartledge`n`nCo-Authors:`nBailey Wilson`nSam Milburn`nTristan Hammat`nYazid Martin`n`nThis tool is designed to be the one stop shop for templates and tools for Buddy Telco. We`nstarted by adapting the Task Panel we used to use at Aussie and adapted and refined it.`n`nThe code was still in V1.1 however and was glued together with hopes and dreams so I wrote it`nin AHK V2.`n`nSo long, and thanks for all the fish.")
 
 ;---------------- Functions -------------------
 SelAccountReasonSelected(*) 
@@ -396,6 +398,36 @@ ProcessSuperlookup(*)
     ;Sites
     else if (RegExMatch(A_Clipboard, "^http(s)?:\/\/|www\.", &Match))
         Run A_Clipboard
+}
+
+Startup(*)
+{
+        if WinExist("C:\Program Files\Slack\slack.exe")
+        {
+            WinActivate
+        } 
+    else 
+        {
+            Run "C:\Program Files\Slack\Slack.exe"
+        }
+        
+    if WinExist("ahk_exe C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+        {
+            WinActivate
+        } 
+    else 
+        {
+            Run "msedge.exe"
+        }
+
+    if WinExist("ahk_exe C:\Program Files\Google\Chrome\Application\chrome.exe")
+        {
+            WinActivate
+        }
+    else 
+        {
+            Run "chrome.exe"
+        }
 }
 
 csFullName := A_UserName
