@@ -398,6 +398,7 @@ csTitle:=StrTitle(csFirstName[0])
     Dice:= Random(1,4)
     Selected := sign.Get(Dice)
     Send (Selected)
+    Send "{Enter}"
     Send (csTitle)
     SendInput "{Tab 1}{Space}"
 	SendInput "{Tab 3}"
