@@ -351,8 +351,20 @@ NSLookup(*)
 
 ProRataCalc(*) {
     ProrataGui := Gui(,"Buddy Tool Kit")
-    ProrataGui.Show("w500 h500")
+    ProrataGui.Add("MonthCal", "yp vBillingStart")
+    ProrataGui.Add("MonthCal", "yp vServiceEnd")
+    ProrataGui.Show("w500 h250")
+    ProrataGui.Add("Edit","xm+5 w100 vMonthlyCost", "")
+    ProrataGui.Add("Text","yp", "Enter the monthly billing amount")
+    ProrataGui.Add("Button","xm+5", "Calculate").OnEvent("Click", PRCalcBox)
 
+        PRCalcBox(*) {
+            Saved:= ProrataGui.Submit(False)
+            DaysPassed := DateDiff(Saved.ServiceEnd, Saved.BillingStart, "days")
+            DailyCost := Saved.MonthlyCost / 30
+            ProrataAmount := DailyCost * DaysPassed
+            MsgBox "The prorata amount is " ProrataAmount
+        }
 }
 
 LockTerminal(*)
