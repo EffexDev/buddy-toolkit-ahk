@@ -361,6 +361,7 @@ ProRataCalc(*) {
         PRCalcBox(*) {
             Saved:= ProrataGui.Submit(False)
             DaysPassed := DateDiff(Saved.ServiceEnd, Saved.BillingStart, "days")
+            Month := 
             DailyCost := Saved.MonthlyCost / 30
             ProrataAmount := DailyCost * DaysPassed
             MsgBox "The prorata amount is " ProrataAmount
