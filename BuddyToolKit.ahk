@@ -55,6 +55,7 @@ ToolsTab.UseTab(3)
 BuddyGui.Add("Button",, "Ping Test").OnEvent("Click", PingTest)
 BuddyGui.Add("Button","yp", "Traceroute").OnEvent("Click", Traceroute)
 BuddyGui.Add("Button","yp", "NSLookup").OnEvent("Click", NSLookup)
+BuddyGui.Add("Button", "yp", "Prorata Calc").OnEvent("Click", ProRataCalc)
 
 ToolsTab.UseTab(4)
 BuddyGui.Add("Text", "+Wrap c000000", "Author: Jordan Cartledge`n`nCo-Authors:`nBailey Wilson`nSam Milburn`nTristan Hammat`nYazid Martin`n`nThis tool is designed to be the one stop shop for templates and tools for Buddy Telco. We`nstarted by adapting the Task Panel we used to use at Aussie and adapted and refined it.`n`nThe code was still in V1.1 however and was glued together with hopes and dreams so I wrote it`nin AHK V2.`n`nSo long, and thanks for all the fish.")
@@ -346,6 +347,12 @@ NSLookup(*)
         Sleep 300
         Send "nslookup " A_Clipboard "{Enter}"
         return
+}
+
+ProRataCalc(*) {
+    ProrataGui := Gui(,"Buddy Tool Kit")
+    ProrataGui.Show("w500 h500")
+
 }
 
 LockTerminal(*)
