@@ -46,10 +46,12 @@ ToolsTab.UseTab(1)
 Notes := BuddyGui.Add("Edit", "h705 w670", "")
 
 ToolsTab.UseTab(2)
-BuddyGui.Add("Edit", "vSearchTerm w300")
-BuddyGui.Add("Button", "yp", "Google").OnEvent("Click", ProcessGoogle)
+BuddyGui.Add("Edit","vSearchTerm w300")
+BuddyGui.Add("Button","yp", "Google").OnEvent("Click", ProcessGoogle)
 BuddyGui.Add("Button","yp", "Superlookup").OnEvent("Click", ProcessSuperlookup)
 BuddyGui.Add("Button","yp", "Lock Terminal").OnEvent("Click", LockTerminal)
+BuddyGui.Add("Button","xm+15 y360","Startup").OnEvent("Click", Startup)
+
 
 ToolsTab.UseTab(3)
 BuddyGui.Add("Button",, "Ping Test").OnEvent("Click", PingTest)
@@ -97,6 +99,7 @@ RunAccount(*)
     if (Saved.PickedAccountReason = "Payment Plan")
     {
         Output := PPMap.Get(Saved.PickedAccount)
+        ToolsTab.Choose(1)
         ControlFocus Notes
         Notes.Focus()
         Send Output
@@ -104,6 +107,7 @@ RunAccount(*)
     else if (Saved.PickedAccountReason = "Financial Hardship")
     {
         Output := FHMap.Get(Saved.PickedAccount)
+        ToolsTab.Choose(1)
         ControlFocus Notes
         Notes.Focus()
         Send Output 
@@ -122,6 +126,7 @@ RunFault(*)
     if (Saved.PickedFaultReason = "General")
         {
         Output := FaultGeneralMap.Get(Saved.PickedFault)
+        ToolsTab.Choose(1)
         ControlFocus Notes
         Notes.Focus()
         Send Output
@@ -129,6 +134,7 @@ RunFault(*)
     else if (Saved.PickedFaultReason = "Slow Speeds")
         {
             Output := SpeedsMap.Get(Saved.PickedFault)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -136,6 +142,7 @@ RunFault(*)
     else if (Saved.PickedFaultReason = "Dropouts")
         {
             Output := DropoutsMap.Get(Saved.PickedFault)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -143,6 +150,7 @@ RunFault(*)
     else if (Saved.PickedFaultReason = "No Connection")
         {
             Output := ConnectionMap.Get(Saved.PickedFault)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -150,6 +158,7 @@ RunFault(*)
     else if (Saved.PickedFaultReason = "Service Setup")
         {
             Output := SetupMap.Get(Saved.PickedFault)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -157,6 +166,7 @@ RunFault(*)
     else if (Saved.PickedFaultReason = "CSP Linking")
         {
             Output := LinkMap.Get(Saved.PickedFault)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -164,6 +174,7 @@ RunFault(*)
     else if (Saved.PickedFaultReason = "Hardware")
         {
             Output := HardwareMap.Get(Saved.PickedFault)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -182,6 +193,7 @@ RunDelivery(*)
     if (Saved.PickedDeliveryReason = "HFC")
         {
             Output := HFCMap.Get(Saved.PickedDelivery)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -189,6 +201,7 @@ RunDelivery(*)
     Else if (Saved.PickedDeliveryReason = "FTTC")
         {
             Output := FTTCMap.Get(Saved.PickedDelivery)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -196,6 +209,7 @@ RunDelivery(*)
     Else if (Saved.PickedDeliveryReason = "Validation")
         {
             Output := ValidationMap.Get(Saved.PickedDelivery)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -203,6 +217,7 @@ RunDelivery(*)
     Else if (Saved.PickedDeliveryReason = "Banlisting")
         {
             Output := BanlistingMap.Get(Saved.PickedDelivery)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -210,6 +225,7 @@ RunDelivery(*)
     Else if (Saved.PickedDeliveryReason = "Missing Payment Info")
         {
             Output := PaymentMap.Get(Saved.PickedDelivery)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -228,6 +244,7 @@ RunComplaint(*)
     if (Saved.PickedComplaintReason = "NBN")
         {
             Output := NBNMap.Get(Saved.PickedComplaint)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -235,6 +252,7 @@ RunComplaint(*)
     Else if (Saved.PickedComplaintReason = "Raising")
         {
             Output := RaisingMap.Get(Saved.PickedComplaint)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -242,6 +260,7 @@ RunComplaint(*)
     Else if (Saved.PickedComplaintReason = "Clarification")
         {
             Output := ClarificationMap.Get(Saved.PickedComplaint)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -249,6 +268,7 @@ RunComplaint(*)
     Else if (Saved.PickedComplaintReason = "Resolutions")
         {
             Output := ResolutionsMap.Get(Saved.PickedComplaint)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -256,6 +276,7 @@ RunComplaint(*)
     Else if (Saved.PickedComplaintReason = "State Changes")
         {
             Output := ChangesMap.Get(Saved.PickedComplaint)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -263,6 +284,7 @@ RunComplaint(*)
     Else if (Saved.PickedComplaintReason = "TIO")
         {
             Output := TIOMap.Get(Saved.PickedComplaint)
+            ToolsTab.Choose(1)
             ControlFocus Notes
             Notes.Focus()
             Send Output
@@ -396,6 +418,36 @@ ProcessSuperlookup(*)
     ;Sites
     else if (RegExMatch(A_Clipboard, "^http(s)?:\/\/|www\.", &Match))
         Run A_Clipboard
+}
+
+Startup(*)
+{
+        if WinExist("C:\Program Files\Slack\slack.exe")
+        {
+            WinActivate
+        } 
+    else 
+        {
+            Run "C:\Program Files\Slack\Slack.exe"
+        }
+        
+    if WinExist("ahk_exe C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+        {
+            WinActivate
+        } 
+    else 
+        {
+            Run "msedge.exe"
+        }
+
+    if WinExist("ahk_exe C:\Program Files\Google\Chrome\Application\chrome.exe")
+        {
+            WinActivate
+        }
+    else 
+        {
+            Run "chrome.exe"
+        }
 }
 
 csFullName := A_UserName
