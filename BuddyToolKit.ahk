@@ -402,7 +402,7 @@ ProcessSuperlookup(*)
         Run "msedge.exe https://aussiebb.atlassian.net/servicedesk/customer/portal/18/" MATCH[0]
     ;NBN AVC/INC/ORD/PRI/WRI/HRI/CVCs
     else if (RegExMatch(A_Clipboard, "(AVC|INC|ORD|PRI|WRI|HRI|CVC)\d*", &Match))
-        Run "https://nbnportals.nbnco.net.au/online_customers/page/home?search=" MATCH[0]
+        Run "https://nbnportals.nbnco.net.au/online_customers/page/home?headerSearch=" MATCH[0]
     ;NBN CRQs
     else if (RegExMatch(A_Clipboard, "^CRQ\d*", &Match))
         Run "https://nbnportals.nbnco.net.au/online_customers/page/change_activity/list?criteriaType=CHANGE_REF_NO&criteria=" MATCH[0]
