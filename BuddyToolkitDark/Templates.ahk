@@ -1,5 +1,5 @@
 #Requires AutoHotkey v2.0
-#Include BuddyToolKit.ahk
+#Include BuddyToolKitDark.ahk
 
 ; --------------- Accounts ----------------
 AccountReasons := ["Payment Plan", "Financial Hardship"]
