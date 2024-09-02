@@ -206,6 +206,14 @@ RunDelivery(*)
             Notes.Focus()
             Send Output
         }
+    Else if (Saved.PickedDeliveryReason = "FTTP")
+        {
+            Output := FTTPMap.Get(Saved.PickedDelivery)
+            ToolsTab.Choose(1)
+            ControlFocus Notes
+            Notes.Focus()
+            Send Output
+        }
     Else if (Saved.PickedDeliveryReason = "Validation")
         {
             Output := ValidationMap.Get(Saved.PickedDelivery)

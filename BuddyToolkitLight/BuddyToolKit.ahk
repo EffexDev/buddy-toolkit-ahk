@@ -206,6 +206,14 @@ RunDelivery(*)
             Notes.Focus()
             Send Output
         }
+    Else if (Saved.PickedDeliveryReason = "FTTP")
+        {
+            Output := FTTPMap.Get(Saved.PickedDelivery)
+            ToolsTab.Choose(1)
+            ControlFocus Notes
+            Notes.Focus()
+            Send Output
+        }
     Else if (Saved.PickedDeliveryReason = "Validation")
         {
             Output := ValidationMap.Get(Saved.PickedDelivery)
@@ -373,19 +381,23 @@ NSLookup(*)
 
 ProRataCalc(*) {
     ProrataGui := Gui(,"Buddy Tool Kit")
-    ProrataGui.Add("MonthCal", "yp vBillingStart")
+    ProrataGui.BackColor := "c007ba8"
+    ProrataGui.Add("MonthCal", "yp+10 vBillingStart")
     ProrataGui.Add("MonthCal", "yp vServiceEnd")
     ProrataGui.Show("w500 h250")
     ProrataGui.Add("Edit","xm+5 w100 vMonthlyCost", "")
-    ProrataGui.Add("Text","yp", "Enter the monthly billing amount")
+    ProrataGui.Add("Text","yp cFFFFFF", "Enter the monthly billing amount")
+    ProrataGui.Add("Edit","xm+5 w100 vdaysInMonth", "")
+    ProrataGui.Add("Text","yp cFFFFFF", "How many days this month?")
     ProrataGui.Add("Button","xm+5", "Calculate").OnEvent("Click", PRCalcBox)
 
         PRCalcBox(*) {
             Saved:= ProrataGui.Submit(False)
             DaysPassed := DateDiff(Saved.ServiceEnd, Saved.BillingStart, "days")
             Month := 
-            DailyCost := Saved.MonthlyCost / 30
-            ProrataAmount := DailyCost * DaysPassed
+            DailyCost := Saved.MonthlyCost / Saved.daysInMonth
+            DaysUsed := DailyCost * DaysPassed
+            ProrataAmount := Saved.MonthlyCost - DaysUsed
             MsgBox "The prorata amount is " ProrataAmount
         }
 }
