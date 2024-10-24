@@ -1,0 +1,28 @@
+Buddy Telco Toolkit Changelog
+Author: Jordan Cartledge
+
+------ Version 1.0 ------
+
+I lost track of this somewhat and did not keep a changelog.
+This first release verion has all of the templates that we made during pre-launch and the first 3 months of Buddy.
+The tools included are the content-aware search, Startup of all programs, terminal lock, Ping test, Traceroute, NSLookup and pro-rata calc.
+
+From here all changes will be detailed.
+
+------ Version 1.5 ------
+
+1. Complete overhaul of the ui. Descriptions added to tools and new tabs added.
+2. Separated General into its own tab so we can have generic templates
+3. Added T&Cs section for throwing the book at people
+4. Added Useful Links tab to avoid having to constantly find things manually
+5. Added Callan to co-authors as he whined about it ages ago
+6. Re-added the hotkey for superlookup
+7. Added hotkeys for the following:
+    - Randomised signature
+    - Abandonment date (Gives you the date 7 calendar days from present)
+    - CSR aware email generator
+    - Reload Key
+8. Added Discovery Question templates to the faults tab
+9. Added a hotkeys legend
+10. Made the superlookup able to search customer accounts from their mobile or email
+
