@@ -31,3 +31,22 @@ From here all changes will be detailed.
 1. Converted to 2 smaller Gui versions for different screen sizes.
 2. Commented code
 
+------ Skipped to Version 3 to avoid naming confusion as the folder was called V2 ------
+
+1. Refactored entire Gui
+2. Added a settings page
+    i. Contains a darkmode, embedded notepad, Always on Top mode
+3. Added CSR name to generated templates
+4. Date now automatically goes into abandonment emails
+5. Tried to refactor the big if else loop using classes but gave up. Will do next release
+6. Added various templates
+
+------ Version 3.1 ------
+1. Added a config.ini that stores the settings so settings now persist across sessions
+2. Added Customer Name field that will now input the custoemrs name into relevant templates. Sends "xxx" if blank
+3. Removed Useful links popout and converted to another tooltab that uses buttons to open the sites
+4. Fixed a bug Yazid found with generating HFC templates instead of Validation ones
+5. Added mobile/email lookup to the superlookup tool
+6. Banged my head on a wall a little because AHKv2 is like JS but with its arms and legs cut off
+7. Added Easter Egg
+8. Separated the main script into multiple smaller function libraries so it is actually someone maintainable
